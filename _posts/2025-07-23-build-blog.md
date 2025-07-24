@@ -6,7 +6,7 @@ categories: markdown
 tags: 博客 Jekyll
 ---
 
-# 写在开头
+## 写在开头
 
 最近在研究使用GitHub Pages搭建博客，好处有两点：
 1. 免费，简单，不用租服务器买域名，一键部署
@@ -16,7 +16,7 @@ GitHub Pages也支持很多博客框架，这里我用的官方推荐的Jekyll�
 
 今天总结一下我的搭建过程，以及中途遇到的一些坑，照着这篇文档，应该能一次搭建成功。
 
-# 参考文档
+## 参考文档
 
 如果只是搭建一个最简单的博客，直接参考官方教程和以下教程即可，十分钟搞定直接开写：
 
@@ -56,7 +56,7 @@ GitHub Pages也支持很多博客框架，这里我用的官方推荐的Jekyll�
 
 * [css conversion error with github pages]
 
-# 正式开始
+## 正式开始
 
 全程在windows下操作，其他系统主要是安装Jekyll方式不同而已。
 
@@ -68,48 +68,48 @@ GitHub Pages也支持很多博客框架，这里我用的官方推荐的Jekyll�
 
 在安装最后一步勾选以下选项
 
-![alt text](../assets/images/posts/2025-07-23-build-blog/image.png)
+![alt text](/assets/images/posts/2025-07-23-build-blog/image.png)
 
 在命令行中选3
 
-![alt text](../assets/images/posts/2025-07-23-build-blog/image-1.png)
+![alt text](/assets/images/posts/2025-07-23-build-blog/image-1.png)
 
 检查是否安装成功，windows命令行运行
 
-```
+```shell
 ruby -v
 gem -v
 ```
 
 然后更换ruby源为国内源，因为ruby默认的官方源在国外，不用梯子的话，下载速度非常慢！所以先更换为国内源，再下载Jekyll，打开命令行，输入以下命令添加ruby国内源
 
-```
+```shell
 gem sources -a https://gems.ruby-china.com/
 ```
 
 然后输入以下命令移除官方源
 
-```
+```shell
 gem sources -r https://rubygems.org/
 ```
 
 最后使用以下命令查看已有的源
 
-```
+```shell
 gem sources -l
 ```
 
-![alt text](../assets/images/posts/2025-07-23-build-blog/image-3.png)
+![alt text](/assets/images/posts/2025-07-23-build-blog/image-3.png)
 
 接下来就可以安装Jekyll了，使用以下命令
 
-```
+```shell
 gem install jekyll bundler
 ```
 
 提示安装完成后，检查是否安装成功
 
-```
+```shell
 jekyll -v
 ```
 
@@ -122,7 +122,7 @@ jekyll -v
 参考[Jekyll-yat主题本地调试修改](https://github.com/SAIGOUPI/SAIGOUPI.github.io/commit/98e81254675ddf3308b2312be9e81b284fefb584)这个提交的修改，在`Gemfile`文件中再修改一次国内源，并添加`gem "logger", "~> 1.7"`和
 `gem "bigdecimal", "~> 3.2"`，修改后完整文件如下：
 
-```
+```shell
 source "https://gems.ruby-china.com/"
 gemspec
 
@@ -133,19 +133,19 @@ gem "bigdecimal", "~> 3.2"
 
 然后在根目录启动命令行，输入命令
 
-```
+```shell
 bundle install
 ```
 
 开始在本地添加博客网站运行的依赖项，提示安装完成后，执行命令
 
-```
+```shell
 bundle exec jekyll serve
 ```
 
 就可以在本地`http://127.0.0.1:4000`访问渲染后的博客网站
 
-![alt text](../assets/images/posts/2025-07-23-build-blog/image-2.png)
+![alt text](/assets/images/posts/2025-07-23-build-blog/image-2.png)
 
 至此，Yat主题初始化完毕
 
@@ -153,19 +153,19 @@ bundle exec jekyll serve
 
 来到自己的博客仓库，在`Settings`里第一行，修改仓库名字成`username.github.io`，`username`就是github的账户名。一定要按照这个格式输入，这个名字也是访问此博客的域名。
 
-![alt text](../assets/images/posts/2025-07-23-build-blog/image-4.png)
+![alt text](/assets/images/posts/2025-07-23-build-blog/image-4.png)
 
 在部署GitHub Pages前，先回到自己的仓库，新建一个分支`gh-pages`，这个分支就用来部署博客页面。
 
-![alt text](../assets/images/posts/2025-07-23-build-blog/image-5.png)
+![alt text](/assets/images/posts/2025-07-23-build-blog/image-5.png)
 
 分支创建完毕后，回到`master`分支上，需要修改一个文件`build-jekyll.yml`，路径如下：
 
-![alt text](../assets/images/posts/2025-07-23-build-blog/image-6.png)
+![alt text](/assets/images/posts/2025-07-23-build-blog/image-6.png)
 
 然后将以下内容覆盖到`build-jekyll.yml`中，此配置来自Yat主题的作者[A GitHub Action to deploy the Jekyll site conveniently for GitHub Pages]，使用此Action就可以在master分支有更新时，通知github自动更新并部署博客页面到网站上，并且此配置也支持大部分Jekyll主题，部署时不会有报错：
 
-```
+```shell
 name: Build and Deploy to Github Pages
 
 on:
@@ -210,17 +210,17 @@ jobs:
 
 然后又来到项目的`Settings`中，进入`Action`-`General`路径中，找到`Workflow permission`，设置为`Read and write permissions`。这样在部署时，github就不会有无法操作仓库的权限问题了。
 
-![alt text](../assets/images/posts/2025-07-23-build-blog/image-7.png)
+![alt text](/assets/images/posts/2025-07-23-build-blog/image-7.png)
 
 最后一步了！进入`Pages`路径，选择`Deploy from a branch`，然后选择`gh-pages`，保存修改，大功告成~！
 
-![alt text](../assets/images/posts/2025-07-23-build-blog/image-8.png)
+![alt text](/assets/images/posts/2025-07-23-build-blog/image-8.png)
 
 来到仓库的`Action`页面，找到刚刚修改的Action，点击右侧Run workflow，启动部署流程，部署完成后，可以在下面的`pages-build-deployment`里看到，`gh-pages`分支已经部署完成
 
-![alt text](../assets/images/posts/2025-07-23-build-blog/image-9.png)
+![alt text](/assets/images/posts/2025-07-23-build-blog/image-9.png)
 
-![alt text](../assets/images/posts/2025-07-23-build-blog/image-10.png)
+![alt text](/assets/images/posts/2025-07-23-build-blog/image-10.png)
 
 然后访问域名`username.github.io`就可以访问自己的博客了~!
 
@@ -228,7 +228,7 @@ jobs:
 
 在本地仓库内根目录下`\_posts`文件内，新建`date-blogTitle.md`文件，`date`是日期，`blogTitle`是文章标题，打开文件，在文章顶部填写基本信息
 
-```
+```markdown
 ---
 layout: post
 title: Another test markdown

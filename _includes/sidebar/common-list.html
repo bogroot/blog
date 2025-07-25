@@ -10,14 +10,16 @@
   <ul>
     <li>
       <a href="{{ '/index.html' | relative_url }}">
-        All<span>{{ site.posts.size }}</span>
+        {%- include functions/get_visible_posts.html -%}
+        All<span>{{ return | size }}</span>
       </a>
     </li>
 
     {% for key in  keys %}
       <li>
         <a href="{{ url }}#h-{{ key }}">
-          {{ key }} <span>{{ site.posts | where: field, key | size }}</span>
+          {%- include functions/get_visible_posts.html -%}
+          {{ key }} <span>{{ return | where: field, key | size }}</span>
         </a>
       </li>
     {% endfor %}

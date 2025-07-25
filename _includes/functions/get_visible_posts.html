@@ -1,0 +1,8 @@
+{%- assign filtered_posts = "" | split: "" -%}
+{%- for post in site.posts -%}
+  {%- unless post.categories contains "hidden" -%}
+    {%- assign filtered_posts = filtered_posts | push: post -%}
+  {%- endunless -%}
+{%- endfor -%}
+
+{%- assign return = filtered_posts -%}

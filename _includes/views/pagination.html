@@ -15,9 +15,13 @@
     <!-- Top list item -->
     {%- if paginator == site or paginator.page == 1 -%}
       {%- assign post_item_class = "top-post" -%}
-      {%- assign posts = site.posts
-        | where_exp: "item", "item.top > 0"
-        | sort: "top" -%}
+      {%- assign all_top_posts = site.posts | where_exp: "item", "item.top > 0" | sort: "top" -%}
+      {%- assign posts = '' | split: '' -%}
+      {%- for post in all_top_posts -%}
+        {%- unless post.categories contains "hidden" -%}
+          {%- assign posts = posts | push: post -%}
+        {%- endunless -%}
+      {%- endfor -%}
       {%- for post in posts -%}
         {%- include views/pagination-item.html -%}
       {%- endfor -%}
@@ -26,6 +30,9 @@
     <!-- Normal list item -->
     {%- assign post_item_class = "" -%}
     {%- for post in paginator.posts -%}
+      {%- if post.categories contains "hidden" -%}
+        {%- continue -%}
+      {%- endif -%}
       {%- if post.top -%}
         {%- continue -%}
       {%- endif -%}

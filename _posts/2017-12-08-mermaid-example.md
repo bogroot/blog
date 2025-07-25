@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Mermaid example
-categories: example
+categories: hidden
 tags: [mermaid]
 ---
 

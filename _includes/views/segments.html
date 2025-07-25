@@ -10,7 +10,9 @@
   <ul class="page-segments-list">
     {% for key in keys %}
     <h2 id="{{ key }}" class="segment-name">{{ key }}</h2>
-      {% assign items = site.posts | where: field, key %}
+      {%- include functions/get_visible_posts.html -%}
+      {% assign visible_posts = return %}
+      {% assign items = visible_posts | where: field, key %}
       {% for item in items %}
         {% if item != nil %}
           {%- assign post_item_class = "" -%}

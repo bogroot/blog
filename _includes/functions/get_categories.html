@@ -3,7 +3,9 @@
 {% assign categories = '' %}
 {% for category in site.categories %}
   {% assign name = category | first %}
-  {% assign categories = categories | append: split_mark  | append: name %}
+  {% unless name == 'hidden' %}
+    {% assign categories = categories | append: split_mark | append: name %}
+  {% endunless %}
 {% endfor %}
 
 {% assign return = categories

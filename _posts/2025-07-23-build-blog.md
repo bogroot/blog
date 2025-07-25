@@ -1,10 +1,20 @@
 ---
 layout: post
-title: 手把手使用Github Pages + Jekyll搭建个人博客
-subtitle: 以及踩过的坑
+title: 使用Github Pages + Jekyll搭建个人博客
+subtitle:
 categories: markdown
 tags: 博客 Jekyll
+banner:
+  image: /assets/images/posts/2025-07-23-build-blog/image.png
+  opacity: 0.2
+  background: "#000"
+  height: "18vh"
+  min_height: "18vh"
+  heading_style: "font-size: 4.25em; font-weight: bold"
+  subheading_style: "color: gold"
 ---
+
+## 使用Github Pages + Jekyll搭建个人博客
 
 ## 写在开头
 
@@ -55,10 +65,6 @@ GitHub Pages也支持很多博客框架，这里我用的官方推荐的Jekyll�
 * [Error: Invalid CSS after " @if meta": expected "{", was ".function-exist..." on line 72]
 
 * [css conversion error with github pages]
-
-## 正式开始
-
-全程在windows下操作，其他系统主要是安装Jekyll方式不同而已。
 
 ## 安装Jekyll
 
